@@ -108,3 +108,28 @@ y = 5
 z = 2 % 2 # 0
 xy = x % 5 # 23 % 5 = 3
 xx = 2 % 23 # 2 % 23 = 2
+
+#Remember PEMDAS for all math operations 'Please Excuse My Dear Aunt Sally', work form left to right
+
+"""
+Python Comparison Operators
+"""
+X = 100
+Y = 200
+
+print( X != Y ) # True
+print( X > Y ) # False
+print( X < Y ) # True
+print( X >= Y ) # False
+print( X <= Y ) # True
+
+"""
+Logical Operators
+"""
+X = 100
+Y = 200
+Z = 100
+
+print( X < Y and Y > Z ) # True
+print( X > Y or Y > Z ) # True
+print(not(X > Y or Y > Z)) # False
