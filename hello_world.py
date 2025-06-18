@@ -133,3 +133,31 @@ Z = 100
 print( X < Y and Y > Z ) # True
 print( X > Y or Y > Z ) # True
 print(not(X > Y or Y > Z)) # False
+
+"""
+Multi-line Code Blocks
+"""
+#if weather == "cold":
+#    print("It's cold outside")
+#    print("Wear a jacket")
+#else:
+#    print("It's warm outside")
+#    print("Wear shorts")
+
+"""
+Chained Conditionals
+"""
+if x < 2:
+    print("small")
+elif x < 10:
+    print("medium")
+else:
+    print("large")
+
+"""
+Nested Conditions
+"""
+if x > 1 and x < 100:
+    print("More than one")
+    print("Less than 100")
+print("Finished")
