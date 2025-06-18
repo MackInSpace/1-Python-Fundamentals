@@ -161,3 +161,41 @@ if x > 1 and x < 100:
     print("More than one")
     print("Less than 100")
 print("Finished")
+
+"""
+While Loop
+"""
+n = 5
+while n > 0:
+    print(n)
+    n = n - 1
+print("Blastoff!")
+print(n)
+
+"""
+Break Statement
+"""
+n = 5
+while n > 0:
+    print(n)
+    n = n - 1
+    if n == 2:
+        break
+print(n)
+
+"""
+Continue Statement
+"""
+n = 5
+while n > 0:
+    n = n - 1
+    if n == 2:
+        continue
+    print(n)
+
+"""
+Infinite Loops
+"""
+#n = 5
+#while n > 0:
+#    print(infinite loop)
