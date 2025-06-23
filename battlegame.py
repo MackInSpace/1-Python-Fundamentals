@@ -41,3 +41,20 @@ while True:
         break
     else:
         print("Invalid choice. Please choose 1, 2, or 3.")
+
+while True: 
+    dragon_hp = dragon_hp - my_damage
+    print("The", character, "damaged the Dragon!")
+    print("The Dragon's health is now:", dragon_hp)
+
+    if dragon_hp <= 0:
+        print("The Dragon has lost the battle.")
+        break
+
+    my_hp = my_hp - dragon_damage
+    print("The Dragon strikes back at the", character, "!")
+    print("The", character, "hitpoints are now:", my_hp)
+
+    if my_hp <= 0:
+        print("The", character, "has lost the battle.")
+        break
