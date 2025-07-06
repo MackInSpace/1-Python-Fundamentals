@@ -1,4 +1,4 @@
-from donations_pkg.homepage import show_homepage, donate
+from donations_pkg.homepage import show_homepage, donate, show_donations
 from donations_pkg.user import login, register
 
 database = {"admin": "password123"}
@@ -31,7 +31,7 @@ while True:
             donation_string = donate(authorized_user)
             donations.append(donation_string)
     elif choice == "4":
-        print("TODO: Write Show Donations Functionality")
+        show_donations(donations)
     elif choice == "5":
         print("Leaving DonateMe...")
         break
