@@ -1,0 +1,11 @@
+def login(database, username, password):
+    if username in database:
+        if database[username] == password:
+            print("Welcome back admin!")
+            return username
+        else: 
+            print("Incorrect password for admin.")
+            return ""
+    else:
+        print("\nUser not found. Please register.")
+        return ""
