@@ -22,10 +22,23 @@ class BankUser(User):
         print(self.name + " has an account balance of:", self.balance)
 
     def withdraw(self, amount):
+        if not isinstance(amount, (int, float)) or amount <= 0:
+            print("Withdrawal failed: Enter a valid positive number")
+            return False
+        if amount > self.balance: 
+            print("Withdrawal failed: Insufficient funds")
+            return False
         self.balance -= amount
+        print(f"${amount} withdrawn from {self.name}'s account. New balance: ${self.balance}")
+        return True
 
     def deposit(self, amount):
+        if not isinstance(amount, (int, float)) or amount <= 0:
+            print("Deposit failed: Enter a valid positive number")
+            return False
         self.balance += amount
+        print(f"${amount} deposited into {self.name}'s account. New balance: ${self.balance}")
+        return True
 
     def transfer_money(self, amount, recipient):
         print("\nYou are transferring $" + str(amount) + " to " + recipient.name)
