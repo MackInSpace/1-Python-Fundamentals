@@ -19,13 +19,77 @@ class BankUser(User):
         self.balance = 0
 
     def show_balance(self):
-        print("Bob has an account balance of:", self.balance)
+        print(self.name + " has an account balance of:", self.balance)
 
     def withdraw(self, amount):
         self.balance -= amount
 
     def deposit(self, amount):
         self.balance += amount
+
+    def transfer_money(self, amount, recipient):
+        print("\nYou are transferring $" + str(amount) + " to " + recipient.name)
+        print("Authentication required")
+        entered_pin = int(input("Enter your PIN: "))
+        if entered_pin == self.pin:
+            if self.balance >= amount:
+                self.balance -= amount
+                recipient.balance += amount
+                print("Transfer authorized")
+                print("Transferring $" + str(amount) + " to " + recipient.name)
+                return True
+            else: 
+                print("Invalid PIN. Transaction canceled.")
+                print("Alice has an account balance of:", self.balance)
+                print("Bob has an account balance of:", recipient.balance)
+                return False
+        else:
+            print("Invalid PIN. Transaction canceled.")
+            print("Alice has an account balance of:", self.balance)
+            print("Bob has an account balance of:", recipient.balance)
+            return False
+        
+          
+    def request_money(self, amount, recipient):
+        print(f"\nYou are requesting ${amount} from {recipient.name}")
+        print("User authentication required...")
+        entered_pin = int(input("Enter " + recipient.name + "'s PIN: "))
+        if entered_pin == recipient.pin:
+            entered_password = input(f"Enter your password: ")
+            if entered_password == recipient.password:
+                print("Request authorized")
+                print("Transferring funds...")
+                self.balance += amount
+                recipient.balance -= amount
+                print(recipient.name + " has received $" + str(amount))
+                return True
+            else: 
+                print("Invalid password. Transaction canceled.")
+                print("Alice has an account balance of:", self.balance)
+                print("Bob has an account balance of:", recipient.balance)
+                return False
+        else:
+            print("Invalid PIN. Transaction canceled.")
+            print("Alice has an account balance of:", self.balance)
+            print("Bob has an account balance of:", recipient.balance)
+            return False
+
+
+user2 = BankUser("Alice", 5678, "password")
+user1 = BankUser("Bob", 1234, "password") 
+
+user2.deposit(5000)
+user2.show_balance()
+user1.show_balance()
+
+if user2.transfer_money(500, user1):
+    user2.show_balance()
+    user1.show_balance()
+
+    if user2.request_money(250, user1):
+        user2.show_balance()
+        user1.show_balance()
+    
 
 """ Driver Code for Task 1 """
 # user1 = User("Bob", 1234, "password")
