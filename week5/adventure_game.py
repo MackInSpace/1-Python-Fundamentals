@@ -97,3 +97,22 @@ while not game_over:
         game_over = True
     else:
         print("❌ Invalid command.")
+
+# Win condition
+if "torch" in inventory and "Logic Badge" in badges:
+    print("🎉 You found your way out with the torch and logic badge!")
+    score += 20
+    print(f"🏆 Your final score is: {score}")
+    game_over = True
+
+# Game summary
+print("🎮 Game Over!")
+print(f"🏆 Your final score is: {score}")
+print(f"📦 Your inventory: {inventory}")
+print(f"🏆 Badges earned: {list(badges)}")
+
+replay = input("🔄 Play again? (yes/no): ").lower()
+if replay == "yes":
+    print("🎮 Restarting the game...")
+else:
+    print("Thanks for playing!")
