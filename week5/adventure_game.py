@@ -9,7 +9,7 @@ def welcome():
 rooms = {
     "entrance": {
         "description": "You are at the entrance of a mysterious cave.",
-        "paths": {"north:": "hallway"},
+        "paths": {"north": "hallway"},
         "items": [],
     },
     "hallway": {
@@ -28,7 +28,7 @@ rooms = {
 # Player state
 score = 0
 inventory = []
-badges = set
+badges = set()
 current_room = "entrance"
 game_over = False
 
@@ -63,8 +63,8 @@ while not game_over:
     print(f"Available paths: {', '.join(room['paths'])}")
     if room["items"]:
         print(f"Items available: {', '.join(room['items'])}")
-    print("📦 Inventory:", {inventory})
-    print("🏆 Score:", {score})
+    print("📦 Inventory:", bubble_sort_inventory(inventory))
+    print("🏆 Score:", score)
 
     command = input("What do you do? ").lower().strip()
 
@@ -99,7 +99,7 @@ while not game_over:
         print("❌ Invalid command.")
 
 # Win condition
-if "torch" in inventory and "Logic Badge" in badges:
+if "torch" in inventory and "Logic Badge" in badges and not game_over:
     print("🎉 You found your way out with the torch and logic badge!")
     score += 20
     print(f"🏆 Your final score is: {score}")
