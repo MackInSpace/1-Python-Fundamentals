@@ -52,3 +52,48 @@ def bubble_sort_inventory(inv):
             if sorted_inv[j] > sorted_inv[j + 1]:
                 sorted_inv[j], sorted_inv[j + 1] = sorted_inv[j + 1], sorted_inv[j]
     return sorted_inv
+
+# Main game loop
+welcome()
+
+while not game_over:
+    room = rooms[current_room]
+    print(f"\n📍 Location: {current_room}")
+    print(room["description"])
+    print(f"Available paths: {', '.join(room['paths'])}")
+    if room["items"]:
+        print(f"Items available: {', '.join(room['items'])}")
+    print("📦 Inventory:", {inventory})
+    print("🏆 Score:", {score})
+
+    command = input("What do you do? ").lower().strip()
+
+    if command.startswith("go "):
+        direction = command.split(" ")[1]
+        if direction in room["paths"]:
+            current_room = room["paths"][direction]
+        else:
+            print("❌ You cannot go that way.")
+    elif command.startswith("take "):
+        item = command.split(" ", 1)[1]
+        if item in room["items"]:
+            inventory.append(item)
+            room["items"].remove(item)
+            print(f"👜 You picked up the {item}.")
+        else:
+            print(f"❌ That item isn't here.")
+    elif command == "solve puzzle" and room.get("puzzle"):
+        gained_score, badge = solve_loop_puzzle()
+        score += gained_score
+        if badge:
+            badges.add(badge)
+    elif command == "sort inventory":
+        if inventory:
+            inventory = bubble_sort_inventory(inventory)
+            print("📦 Inventory sorted alphabetically.")
+        else:
+            print("📦 Your inventory is empty.")
+    elif command == "quit":
+        game_over = True
+    else:
+        print("❌ Invalid command.")
