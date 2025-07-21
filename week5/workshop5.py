@@ -107,3 +107,54 @@ def run_game():
         guess_random_num_binary(tries, start, stop)
     else:
         print("Invalid choice.")
+
+def gambling_game():
+    money = 10
+
+    while 0 < money <= 50:
+        print(f"\nCurrent balance: ${money}")
+        try:
+            bet = int(input("Place your bet ($1 - $10): "))
+        except ValueError:
+            print("Must be an integer.")
+            continue
+
+        if bet < 1 or bet > 10 or bet > money:
+            print("Invalid bet.")
+            continue
+
+        prediction = input("Will the computer guess correctly? (yes/no): ").strip().lower()
+        if prediction not in ["yes", "no"]:
+            print("Invalid prediction.")
+            continue
+
+        outcome = linear_gamble_helper()
+        correct = "yes" if outcome else "no"
+
+        if prediction == correct:
+            money += bet
+            print(f"You won! New balance: ${money}")
+        else:
+            money -= bet
+            print(f"You lost. New balance: ${money}")
+
+    if money > 50:
+        print("You WIN the game!")
+    else:
+        print("Game Over. You're out of money.")
+
+def linear_gamble_helper():
+    target = random.randint(0, 10)
+    tries = 5
+    for guess in range(0, 11):
+        if tries == 0:
+            return False
+        if guess == target:
+            return True
+        tries -= 1
+    return False
+
+if __name__ == "__main__":
+    # Uncomment one of these to test:
+    # run_game()
+    gambling_game()
