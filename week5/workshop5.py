@@ -81,8 +81,8 @@ def guess_random_num_binary(tries, start, stop):
 
     print(f"Your program failed to find the number.")
 
-if __name__ == "__main__":
-    guess_random_num_binary(5, 0, 100)
+""" if __name__ == "__main__":
+    guess_random_num_binary(5, 0, 100) """
 
 def run_game():
     try:
